@@ -4,7 +4,8 @@ switch on Trigger.OperationType {
     when BEFORE_INSERT {
 
             IngressoService.ingressoTriggerHandlerBeforeInsert(Trigger.new);
-            
+            IngressoService.ingressoTriggerHandlerValidarFilme(Trigger.new);
+        
 }
 }
 
