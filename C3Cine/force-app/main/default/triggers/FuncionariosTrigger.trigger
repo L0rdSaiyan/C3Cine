@@ -10,7 +10,7 @@ trigger FuncionariosTrigger on Funcionario__c (before insert, before update) {
             FuncionariosService.funcionarioTriggerHandlerRank(Trigger.new);
             FuncionariosService.validarNumeroDeIngressosTriggerHandler(Trigger.new);
             FuncionariosService.incrementarTotalDeIngressosVendidosTriggerHandler(Trigger.new);
-
+            
         }
     }
 }

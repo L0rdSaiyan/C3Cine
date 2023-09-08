@@ -30,17 +30,28 @@ public with sharing class FuncionariosService {
         }
     }
 
-    public static void incrementarTotalDeIngressosVendidosTriggerHandler(List<Funcionario__c> funcionarios){
+
+    @invocableMethod(Label='Reseta o rank de todos os funcionários da org semanalmente')
+public static void resetarRankDeTodosOsFuncionariosSemanalmente() {
+    List<Funcionario__c> funcionarios = FuncionarioSelector.selecionarTodosOsFuncionarios();
 
         for(Funcionario__c funcionario : funcionarios){
-
-            funcionario.Total_de_ingressos_vendidos__c += funcionario.Ingressos_Vendidos__c;
-
+            funcionario.Ingressos_Vendidos__c = 0;
         }
 
+        update funcionarios;
 
+}
+
+    
+    public static void incrementarTotalDeIngressosVendidosTriggerHandler(List<Funcionario__c> funcionarios){
+        for(Funcionario__c funcionario : funcionarios){
+            if (funcionario.Total_de_ingressos_vendidos__c != null && funcionario.Ingressos_Vendidos__c != null) {
+                funcionario.Total_de_ingressos_vendidos__c += funcionario.Ingressos_Vendidos__c;
+            }
+        }
     }
-
+    
 
 
 }
