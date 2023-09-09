@@ -31,6 +31,44 @@ public with sharing class FuncionariosService {
     }
 
 
+    public static void incrementarTotalDeIngressosVendidosTriggerHandler(List<Funcionario__c> funcionarios){
+        for(Funcionario__c funcionario : funcionarios){
+            if (funcionario.Total_de_ingressos_vendidos__c != null && funcionario.Ingressos_Vendidos__c != null) {
+                funcionario.Total_de_ingressos_vendidos__c += funcionario.Ingressos_Vendidos__c;
+            }
+            else if(funcionario.Ingressos_Vendidos__c == null ){
+
+                funcionario.Ingressos_Vendidos__c = 0;
+
+            }else if(funcionario.Total_de_ingressos_vendidos__c == null){
+    
+                funcionario.Total_de_ingressos_vendidos__c = 0;
+                funcionario.Total_de_ingressos_vendidos__c += funcionario.Ingressos_Vendidos__c;
+    
+            }
+        }
+    }
+    
+        public static void aumentarVezesFuncionarioDaSemanaTriggerHandler(List<Funcionario__c> novosRegistros, Map<Id, Funcionario__c> registrosAntigos) {
+            for (Funcionario__c novoRegistro : novosRegistros) {
+                Funcionario__c registroAntigo = registrosAntigos.get(novoRegistro.Id);
+    
+                if (registroAntigo != null) {
+                    if (novoRegistro.Ranks__c != registroAntigo.Ranks__c) {
+                        if (novoRegistro.Ranks__c == 'Funcionário do Mês') {
+                            if (novoRegistro.N_vezes_funcionario_da_semana__c == null) {
+                                novoRegistro.N_vezes_funcionario_da_semana__c = 1;
+                            } else {
+                                novoRegistro.N_vezes_funcionario_da_semana__c += 1;
+                            }
+                        }
+                    }
+                }
+            }
+        
+    }
+    
+
     @invocableMethod(Label='Reseta o rank de todos os funcionários da org semanalmente')
 public static void resetarRankDeTodosOsFuncionariosSemanalmente() {
     List<Funcionario__c> funcionarios = FuncionarioSelector.selecionarTodosOsFuncionarios();
@@ -43,14 +81,6 @@ public static void resetarRankDeTodosOsFuncionariosSemanalmente() {
 
 }
 
-    
-    public static void incrementarTotalDeIngressosVendidosTriggerHandler(List<Funcionario__c> funcionarios){
-        for(Funcionario__c funcionario : funcionarios){
-            if (funcionario.Total_de_ingressos_vendidos__c != null && funcionario.Ingressos_Vendidos__c != null) {
-                funcionario.Total_de_ingressos_vendidos__c += funcionario.Ingressos_Vendidos__c;
-            }
-        }
-    }
     
 
 
