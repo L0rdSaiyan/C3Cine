@@ -1,0 +1,15 @@
+<aura:component implements="lightning:actionOverride,lightning:actionOverride,force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >    <!--Boolean attribute to indicate if modal is open or not 
+    default value is false as modal is closed when page is loaded 
+ -->
+
+<section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+ <div class="slds-modal__container">
+    
+   <div class="slds-modal__header">
+    <c:IngressosForm></c:IngressosForm>
+   </div>
+  </div>
+</section>
+<div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+
+</aura:component>

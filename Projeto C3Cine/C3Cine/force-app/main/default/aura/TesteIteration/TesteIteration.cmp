@@ -1,0 +1,11 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name="games" type="String[]" default="['Dragon Ball FighterZ','Mortal Kombat 11', 'Metal Gear Rising']"/>
+    <aura:attribute name="clicado" type="String"/>
+
+    <h1>Lista de jogos</h1>
+    <aura:iteration items="{!v.games}" var="game" indexVar="index">
+        <!-- Passa o valor do jogo como um parâmetro no evento de clique -->
+        <p data-index="{!index}" onclick="{!c.setGame}" data-value="{!game}">{!game} index: {!index}</p>
+    </aura:iteration>
+    <p>Valor clicado: {!v.clicado}</p>
+</aura:component>

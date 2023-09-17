@@ -1,0 +1,113 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <!-- Attributes -->
+    <aura:attribute name="listOppLineItem" type="List" default="['a1','a2','a3','a4','a5','a6','a7','a8','a9','a10']" />
+
+    <div class="main-container">
+        <lightning:card title="Escolha seus Assentos">
+            <lightning:layout horizontalAlign="space">
+
+                <aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+                    <div class="fileira">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="custom-box">
+                                {!oppLineItem}
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </aura:iteration>
+            </lightning:layout>
+
+                <lightning:layout horizontalAlign="space">
+
+                <aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+                    <div class="fileira">
+                        <lightning:layoutItem padding="around-small">
+                            <div class="custom-box">
+                                {!oppLineItem}
+                            </div>
+                        </lightning:layoutItem>
+                    </div>
+                </aura:iteration>
+            </lightning:layout>
+
+            <lightning:layout horizontalAlign="space">
+
+            <aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+                <div class="fileira">
+                    <lightning:layoutItem padding="around-small">
+                        <div class="custom-box">
+                            {!oppLineItem}
+                        </div>
+                    </lightning:layoutItem>
+                </div>
+            </aura:iteration>
+        </lightning:layout>
+
+
+        <lightning:layout horizontalAlign="space">
+
+        <aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+            <div class="fileira">
+                <lightning:layoutItem padding="around-small">
+                    <div class="custom-box">
+                        {!oppLineItem}
+                    </div>
+                </lightning:layoutItem>
+            </div>
+        </aura:iteration>
+    </lightning:layout>
+
+
+
+    <lightning:layout horizontalAlign="space">
+
+    <aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+        <div class="fileira">
+            <lightning:layoutItem padding="around-small">
+                <div class="custom-box">
+                    {!oppLineItem}
+                </div>
+            </lightning:layoutItem>
+        </div>
+    </aura:iteration>
+</lightning:layout>
+
+
+
+<lightning:layout horizontalAlign="space">
+
+<aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+    <div class="fileira">
+        <lightning:layoutItem padding="around-small">
+            <div class="custom-box">
+                {!oppLineItem}
+            </div>
+        </lightning:layoutItem>
+    </div>
+</aura:iteration>
+</lightning:layout>
+
+
+
+<lightning:layout horizontalAlign="space">
+
+<aura:iteration items="{!v.listOppLineItem}" var="oppLineItem">
+    <div class="fileira">
+        <lightning:layoutItem padding="around-small">
+            <div class="custom-box">
+                {!oppLineItem}
+            </div>
+        </lightning:layoutItem>
+    </div>
+</aura:iteration>
+</lightning:layout>
+
+
+<div class="tela">
+
+    TELA
+
+</div>
+        </lightning:card>
+    </div>
+</aura:component>

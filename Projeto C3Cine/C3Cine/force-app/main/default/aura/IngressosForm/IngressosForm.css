@@ -1,0 +1,78 @@
+.THIS .fileira {
+    display: flex;
+    flex-direction: column; /* Altera a direção do flex para coluna */
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.THIS .main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.THIS .custom-box {
+    width: 30px; /* Largura das divs */
+    height: 30px; /* Altura das divs */
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000; /* Borda das divs */
+    margin: 2px; /* Espaçamento entre as divs */
+    text-align: center; /* Centraliza o texto verticalmente */
+    line-height: 45px; /* Centraliza o texto horizontalmente */
+    cursor: pointer; /* Cursor do mouse ao passar sobre as divs */
+    background-image: url('/resource/seat');
+    background-size: cover;
+    background-position: center;
+}
+
+.THIS h1{
+
+font-size: 25px;
+font-weight: bold;
+}
+
+
+.THIS .custom-box-inner{
+
+    opacity: 0;
+    color:#fff;
+
+}
+
+.THIS .custom-box-inner:hover{
+
+    opacity: 1;
+
+}
+
+
+.THIS .custom-box:hover{
+
+    background-image: url('');
+    background-color: blue;
+
+
+}
+
+
+.THIS .tela{
+
+    width: 100%;
+    height: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+
+}
+
+.THIS p{
+
+    position: absolute;
+    left: 10px;
+}

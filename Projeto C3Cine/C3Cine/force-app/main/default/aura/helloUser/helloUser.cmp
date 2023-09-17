@@ -1,0 +1,23 @@
+<aura:component controller="HelloUserController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+    <aura:attribute name="mensagem" type="String"/>
+    <aura:attribute name="tempo" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <!--Body do componente-->
+
+   <lightning:card footer="Card Footer" title="Olá!">
+   
+   <div class="aoba">
+
+       <p class="slds-p-horizontal_small">
+                <h1>{!v.tempo} {!v.mensagem}</h1>
+    
+            </p>
+
+   </div>
+   
+    </lightning:card>
+
+    
+    
+</aura:component>
