@@ -1,6 +1,15 @@
-.THIS{
+.THIS .aoba{
 
+display: flex;
+justify-content: center;
+align-items: center;
 
 
     
+}
+
+.THIS h1{
+
+    font-weight: bold;
+
 }

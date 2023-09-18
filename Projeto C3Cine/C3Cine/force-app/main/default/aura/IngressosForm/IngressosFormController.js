@@ -8,8 +8,25 @@
       component.set("v.valorAssento",valorDoAssento)
       fields.teste_assento__c = cadeiraSelecionada; // Defina o campo com o valor calculado
 
-      // Submeta o formulário
-      component.find("myRecordForm").submit(fields);
+    if(cadeiraSelecionada == "null"){
+
+        var toastEvent = $A.get("e.force:showToast");
+        // Dispare o evento do toast
+        toastEvent.setParams({
+            "title": "Escolha uma cadeira",
+            "message": "Escolha uma cadeira antes de criar o registro de ingresso",
+            "type": "error"
+        });
+        toastEvent.fire();
+
+    }else{
+
+
+        component.find("myRecordForm").submit(fields);
+
+    }
+
+
      
 
   },

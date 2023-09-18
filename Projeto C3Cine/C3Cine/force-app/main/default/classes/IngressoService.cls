@@ -17,14 +17,17 @@ public with sharing class IngressoService {
             
 
             for (Funcionario__c funcionario : funcionarios) {
+
+                if(funcionario.Cargo__c == 'Caixa de cinema'){
                 if (funcionario.Ingressos_Vendidos__c == null) {
                     funcionario.Ingressos_Vendidos__c = 1;
                 } else {
                     funcionario.Ingressos_Vendidos__c += 1;
                 }
+                update funcionarios;
             }
+        }
 
-            update funcionarios;
         }
     }
 
@@ -207,5 +210,36 @@ public with sharing class IngressoService {
     }
 
 
+
+    public static void validarFuncionarioPIngresso(List<Ingressos__c> ingressos){
+
+        List<Id> funcionariosId = new List<Id>();
+
+        for(Ingressos__c ingresso: ingressos){
+
+            funcionariosId.add(ingresso.Funcionario_que_vendeu_o_ingresso__c);
+
+        }
+
+        List<Funcionario__c> funcionariosToCheck = [SELECT Id, Name, Cargo__c
+                                                    FROM Funcionario__c
+                                                    WHERE Id IN : funcionariosId];
+
+        for(Funcionario__c funcionario : funcionariosToCheck){
+
+            if(funcionario.Cargo__c != 'Caixa de Cinema'){
+
+                for(Ingressos__c ingresso : ingressos){
+
+                        ingresso.Funcionario_que_vendeu_o_ingresso__c.addError('O funcionário não faz parte da bilheteria');
+
+                }
+
+            }
+
+        }
+
+
+    }
 
 }

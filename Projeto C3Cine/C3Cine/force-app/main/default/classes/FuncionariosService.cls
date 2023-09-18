@@ -14,7 +14,7 @@ public with sharing class FuncionariosService {
             } else if(funcionario.Ingressos_Vendidos__c >= 40 && funcionario.Ingressos_Vendidos__c <= 49){
                 funcionario.Ranks__c = 'Líder de Equipe';
             } else if(funcionario.Ingressos_Vendidos__c >=50){
-                funcionario.Ranks__c = 'Funcionário da Semana';
+                funcionario.Ranks__c = 'Funcionário do Mês';
 
             }
         }
@@ -55,11 +55,11 @@ public with sharing class FuncionariosService {
     
                 if (registroAntigo != null) {
                     if (novoRegistro.Ranks__c != registroAntigo.Ranks__c) {
-                        if (novoRegistro.Ranks__c == 'Funcionário da Semana') {
-                            if (novoRegistro.N_vezes_funcionario_da_semana__c == null) {
-                                novoRegistro.N_vezes_funcionario_da_semana__c = 1;
+                        if (novoRegistro.Ranks__c == 'Funcionário do Mês') {
+                            if (novoRegistro.N_vezes_funcionario_do_mes__c == null) {
+                                novoRegistro.N_vezes_funcionario_do_mes__c = 1;
                             } else {
-                                novoRegistro.N_vezes_funcionario_da_semana__c += 1;
+                                novoRegistro.N_vezes_funcionario_do_mes__c += 1;
                             }
                         }
                     }
@@ -81,6 +81,21 @@ public static void resetarRankDeTodosOsFuncionariosMensalmente() {
 
 }
 
+
+public static void validarCargoParaVenderIngressos(List<Funcionario__c> funcionarios ){
+
+    for(Funcionario__c funcionario : funcionarios){
+
+        if(funcionario.Cargo__c != 'Caixa de Cinema' && funcionario.Ingressos_Vendidos__c != null && funcionario.Total_de_ingressos_vendidos__c	!= null){
+
+            funcionario.Cargo__c.addError('Você pode atribuir ingressos vendidos para um funcionário q n é da bilheteria');
+
+        }
+
+    }
+
+
+}
     
 
 

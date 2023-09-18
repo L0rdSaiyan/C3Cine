@@ -7,7 +7,7 @@ trigger AssentoTrigger on Assento__c (before insert, after insert) {
        
         when AFTER_INSERT{
 
-            AssentoService.updateMemeHandler(Trigger.new);
+            AssentoService.atribuirAssentoAoIngresso(Trigger.new);
 
         }
 

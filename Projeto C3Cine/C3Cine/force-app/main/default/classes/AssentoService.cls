@@ -28,7 +28,7 @@ public with sharing class AssentoService {
 
     
 
-    public static void updateMemeHandler(List<Assento__c> assentos){
+    public static void atribuirAssentoAoIngresso(List<Assento__c> assentos){
 
         List<Id> ingressosId = new List<Id>();
 
@@ -56,5 +56,3 @@ public with sharing class AssentoService {
     }
 
 }
-
-

@@ -1,0 +1,25 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <lightning:carousel disableAutoRefresh="false" disableAutoScroll="false">
+        <lightning:carouselImage
+            src = "{!$Resource.Oculos3dImg}"
+            header = "Devolva o óculos na saída da sessão!"
+            description = ""
+            alternativeText = "Devolva o óculos na saída da sessão!"
+            href = "">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "{!$Resource.C3Candy}"
+            header = "C3Candy"
+            description = "Venha conhecer as ofertas da C3Candy!"
+            alternativeText = "Venha conhecer as ofertas da C3Candy!"
+            href="">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "{!$Resource.C3CineFamilia}"
+            header = "Para toda a família!"
+            description = "Traga toda a sua família para experimentar a mágina da C3Cine."
+            alternativeText = "Traga toda a sua família para experimentar a mágina da C3Cine."
+            href = "">
+        </lightning:carouselImage>
+    </lightning:carousel>
+</aura:component>

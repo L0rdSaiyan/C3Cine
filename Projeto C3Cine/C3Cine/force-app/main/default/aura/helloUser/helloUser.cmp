@@ -5,7 +5,7 @@
     
     <!--Body do componente-->
 
-   <lightning:card footer="Card Footer" title="Olá!">
+   <lightning:card footer="Tenha e faça um ótimo dia!" title="Olá!">
    
    <div class="aoba">
 

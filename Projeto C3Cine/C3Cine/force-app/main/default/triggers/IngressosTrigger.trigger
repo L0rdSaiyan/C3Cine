@@ -8,6 +8,7 @@ switch on Trigger.OperationType {
             IngressoService.reduzirAssentosDeSala(Trigger.new);
             IngressoService.validarValorDoIngresso(Trigger.new);
             IngressoService.validarQuantidadeAssentos(Trigger.new);
+            IngressoService.validarFuncionarioPIngresso(Trigger.new);
 
         
 }
