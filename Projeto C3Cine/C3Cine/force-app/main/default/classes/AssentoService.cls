@@ -55,4 +55,37 @@ public with sharing class AssentoService {
 
     }
 
+
+    public static void atribuirSalaAoAssento(List<Assento__c> assentos){
+
+        List<Id> ingressosId = new List<Id>();
+
+
+        for(Assento__c assento : assentos){
+
+            ingressosId.add(assento.Ingresso__c);
+
+        }
+
+        List<Ingressos__c> ingressos = [
+
+        SELECT Id, Name, Sala__c
+        FROM Ingressos__C
+        WHERE Id IN : ingressosId
+
+        ];
+
+            for(Assento__c assento : assentos ){
+
+
+                for(Ingressos__c ingresso : ingressos){
+
+                    assento.Sala__c	= ingresso.Sala__c;
+
+                }
+
+            }
+
+    }
+
 }

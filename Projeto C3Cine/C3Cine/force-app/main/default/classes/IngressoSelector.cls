@@ -15,15 +15,13 @@ public with sharing class IngressoSelector {
         return resultados;
     }
 
-    public static List<Ingressos__c> consultarIngressosAntigos(){
-
+    public static List<Ingressos__c> consultarIngressosAntigos() {
         List<Ingressos__c> ingressosAntigos = [SELECT Id, Name, CreatedDate
-        FROM Ingressos__c
-        WHERE CreatedDate > :Date.today().addDays(7)];
-
+                                                FROM Ingressos__c
+                                                WHERE CreatedDate < :Date.today().addDays(-7)];
         return ingressosAntigos;
-
     }
+    
 
    public static List<Cliente__c> consultarClientes(List<Id> clientesId ){
 

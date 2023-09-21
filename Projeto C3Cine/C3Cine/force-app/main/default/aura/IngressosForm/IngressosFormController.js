@@ -1,35 +1,47 @@
 ({
-  navigate: function (component, event, helper) {
-      event.preventDefault();
+    navigate: function (component, event, helper) {
+        event.preventDefault();
 
-      var cadeiraSelecionada = component.get("v.cadeiraSelecionada");
-      const fields = event.getParam("fields");
-      var valorDoAssento = fields.Valor_do_Ingresso__c;
-      component.set("v.valorAssento",valorDoAssento)
-      fields.teste_assento__c = cadeiraSelecionada; // Defina o campo com o valor calculado
+        var cadeiraSelecionada = component.get("v.cadeiraSelecionada");
+        const fields = event.getParam("fields");
+        var valorDoAssento = fields.Valor_do_Ingresso__c;
+        var nomeDaSala = fields.Sala__c;
+        component.set("v.valorAssento", valorDoAssento);
+        fields.teste_assento__c = cadeiraSelecionada;
 
-    if(cadeiraSelecionada == "null"){
-
-        var toastEvent = $A.get("e.force:showToast");
-        // Dispare o evento do toast
-        toastEvent.setParams({
-            "title": "Escolha uma cadeira",
-            "message": "Escolha uma cadeira antes de criar o registro de ingresso",
-            "type": "error"
+        var action = component.get("c.validarAssentoDisponivelParaSala");
+        action.setParams({ nomeAssento: cadeiraSelecionada, nomeSala: nomeDaSala });
+        action.setCallback(this, function (response) {
+            var result = response.getReturnValue();
+            if (response.getState() === "SUCCESS") {
+                if (result === true) {
+                    var toastEvent = $A.get("e.force:showToast");
+                    // Dispare o evento do toast
+                    toastEvent.setParams({
+                        "title": "Não foi possível criar o assento.",
+                        "message": "Já existe um assento reservado para a mesma sala.",
+                        "type": "error"
+                    });
+                    toastEvent.fire();
+                } else {
+                    // Coloque aqui o código que você deseja executar em caso de sucesso.
+                    // Por exemplo, submit do formulário.
+                    component.find("myRecordForm").submit(fields);
+                }
+            } else {
+                // Trate os erros de forma adequada
+                var toastEvent = $A.get("e.force:showToast");
+                toastEvent.setParams({
+                    "title": "Erro na chamada do servidor.",
+                    "message": "Ocorreu um erro ao validar o assento.",
+                    "type": "error"
+                });
+                toastEvent.fire();
+            }
         });
-        toastEvent.fire();
 
-    }else{
-
-
-        component.find("myRecordForm").submit(fields);
-
-    }
-
-
-     
-
-  },
+        $A.enqueueAction(action);
+    },
 
   criarNovoAssento : function(component,event,helper){
     var recordId = event.getParam("id")
@@ -60,8 +72,8 @@
           var toastEvent = $A.get("e.force:showToast");
           // Dispare o evento do toast
           toastEvent.setParams({
-              "title": "deu merda!!",
-              "message": "cagou o codigo"+result,
+              "title": "Error",
+              "message": "a classe apex de criação de registr não funcionou."+result,
               "type": "success"
           });
           toastEvent.fire();

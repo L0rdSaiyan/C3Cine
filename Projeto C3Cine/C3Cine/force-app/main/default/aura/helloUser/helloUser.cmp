@@ -5,9 +5,9 @@
     
     <!--Body do componente-->
 
-   <lightning:card footer="Tenha e faça um ótimo dia!" title="Olá!">
+   <lightning:card footer="Tenha e faça um ótimo dia!">
    
-   <div class="aoba">
+   <div class="greetings">
 
        <p class="slds-p-horizontal_small">
                 <h1>{!v.tempo} {!v.mensagem}</h1>

@@ -242,4 +242,36 @@ public with sharing class IngressoService {
 
     }
 
+    public static void validarAssentoDisponivelParaSala(List<Ingressos__c> ingressos) {
+        List<Id> salas = new List<Id>();
+        
+        // Coletar IDs de salas dos ingressos
+        for (Ingressos__c ingresso : ingressos) {
+            salas.add(ingresso.Sala__c);
+        }
+    
+        // Consultar todos os assentos relacionados às salas dos ingressos
+        List<Assento__c> assentos = [SELECT Id, Name, Sala__c 
+                                      FROM Assento__c
+                                      WHERE Sala__c IN :salas];
+    
+        Map<Id, Set<String>> salaAssentosMap = new Map<Id, Set<String>>();
+        
+        // Construir um mapa de salas para nomes de assentos associados
+        for (Assento__c assento : assentos) {
+            if (!salaAssentosMap.containsKey(assento.Sala__c)) {
+                salaAssentosMap.put(assento.Sala__c, new Set<String>());
+            }
+            salaAssentosMap.get(assento.Sala__c).add(assento.Name);
+        }
+    
+        // Validar os assentos selecionados nos ingressos
+        for (Ingressos__c ingresso : ingressos) {
+            if (salaAssentosMap.containsKey(ingresso.Sala__c) &&
+                salaAssentosMap.get(ingresso.Sala__c).contains(ingresso.teste_assento__c)) {
+                ingresso.teste_assento__c.addError('Você não pode selecionar essa cadeira pois ela já foi selecionada por outro usuário');
+            }
+        }
+    }
+    
 }

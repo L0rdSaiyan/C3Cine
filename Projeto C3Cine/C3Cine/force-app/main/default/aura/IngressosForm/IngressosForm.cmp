@@ -6,6 +6,7 @@
         <aura:attribute name="listOppLineItem4" type="List" default="['d1','d2','d3','d4','d5','d6','d7','d8','d9','d10']" />
         <aura:attribute name="listOppLineItem5" type="List" default="['e1','e2','e3','e4','e5','e6','e7','e8','e9','e10']" />
         <aura:attribute name="cadeiraSelecionada" type="String" access="GLOBAL" default="null" ></aura:attribute>
+        <aura:attribute name="nomeDaSala" type="String"></aura:attribute>
         <aura:attribute name="valorAssento" type="Decimal" default=""></aura:attribute>
         <lightning:notificationsLibrary aura:id="notifLib"/>
         <aura:attribute name="currentList" type="List" />

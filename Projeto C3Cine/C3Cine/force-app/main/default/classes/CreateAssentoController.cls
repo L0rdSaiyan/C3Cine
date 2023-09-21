@@ -11,4 +11,20 @@ public static void criarAssento(String name, String id){
 
 }
 
+@AuraEnabled
+public static Boolean validarAssentoDisponivelParaSala(String nomeAssento, Id nomeSala) {
+    Boolean resposta = false;
+
+    List<Assento__c> assentos = CreateAssentoSelector.selecionarAssentosIndisponiveis(nomeAssento, nomeSala);
+
+    if (!assentos.isEmpty()) {
+        resposta = true;
+    }
+
+    return resposta;
+}
+
+
+
+
 }
