@@ -24,8 +24,6 @@
                     });
                     toastEvent.fire();
                 } else {
-                    // Coloque aqui o código que você deseja executar em caso de sucesso.
-                    // Por exemplo, submit do formulário.
                     component.find("myRecordForm").submit(fields);
                 }
             } else {
@@ -73,7 +71,7 @@
           // Dispare o evento do toast
           toastEvent.setParams({
               "title": "Error",
-              "message": "a classe apex de criação de registr não funcionou."+result,
+              "message": "a classe apex de criação de registro não funcionou."+result,
               "type": "success"
           });
           toastEvent.fire();
@@ -122,4 +120,47 @@
       });
       urlEvent.fire();
   },
-});
+
+  
+  validaCadeira: function (component, event, helper) {
+    var action = component.get("c.selecionarTodosAssentos");
+    action.setCallback(this, function (response) {
+        if (response.getState() === "SUCCESS") {
+            var result = response.getReturnValue();
+
+            result.forEach(function (nomeAssento) {
+
+                var elements = document.getElementsByClassName("custom-box");
+
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+
+
+                    var dataId = element.getAttribute('data-id');
+
+                    if (dataId == nomeAssento) {
+
+                        var isOccupied = $A.util.hasClass(element, "assentoOcupado");
+
+                        if (!isOccupied) {
+                            $A.util.addClass(element, "assentoOcupado");
+                            $A.util.removeClass(element, "custom-box")
+                        } else {
+
+                            $A.util.removeClass(element, "assentoOcupado");
+                            $A.util.addClass(element, "custom-box");
+
+                        }
+
+                    
+                    }
+                }
+            });
+        }
+    });
+    $A.enqueueAction(action);
+}
+
+
+
+})

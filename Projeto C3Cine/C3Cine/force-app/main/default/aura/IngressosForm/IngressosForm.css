@@ -7,6 +7,32 @@
     margin: 0 auto;
 }
 
+.THIS .tela{
+
+    background-color: red;
+
+}
+
+
+.THIS .assentoOcupado{
+
+    width: 30px; /* Largura das divs */
+    height: 30px; /* Altura das divs */
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000; /* Borda das divs */
+    margin: 2px; /* Espaçamento entre as divs */
+    text-align: center; /* Centraliza o texto verticalmente */
+    line-height: 45px; /* Centraliza o texto horizontalmente */
+    cursor: pointer; /* Cursor do mouse ao passar sobre as divs */
+    background-size: cover;
+    background-color: red;
+    background-position: center;
+
+}
+
 .THIS .main-container {
     display: flex;
     align-items: center;
@@ -60,16 +86,6 @@ font-weight: bold;
 
 }
 
-
-.THIS .tela{
-
-    width: 100%;
-    height: 20px;
-    text-align: center;
-    background-color: #000;
-    color: #fff;
-
-}
 
 .THIS p{
 

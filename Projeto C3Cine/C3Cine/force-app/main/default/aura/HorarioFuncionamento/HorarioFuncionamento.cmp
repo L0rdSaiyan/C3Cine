@@ -1,0 +1,17 @@
+<!-- Aura Component -->
+<aura:component controller="HorarioC3CineController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId" access="global">
+    <aura:attribute name="funcionando" type="Boolean"></aura:attribute>
+    <lightning:card title="Em operação das 9 da manhã às 23 da noite">
+        <div class="greetings">
+            <p class="slds-p-horizontal_small">
+                <aura:if isTrue="{!v.funcionando}">
+                    <h1 class="aberto">O Cinema está aberto.</h1>
+                </aura:if>
+                <aura:if isTrue="{!not(v.funcionando)}">
+                    <h1 class="fechado">O Cinema está fechado.</h1>
+                </aura:if>
+            </p>
+        </div>
+    </lightning:card>
+
+</aura:component>

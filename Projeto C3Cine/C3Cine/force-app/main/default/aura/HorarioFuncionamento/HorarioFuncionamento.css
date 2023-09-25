@@ -1,0 +1,29 @@
+.THIS .greetings{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+        
+    }
+    
+    
+    .THIS h1{
+    
+        font-weight: bold;
+        font-size: 30px;
+    
+    }
+    
+    .THIS .aberto{
+
+        color: green;
+
+    }
+
+    .THIS .fechado{
+
+        color: red;
+
+    }

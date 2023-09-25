@@ -1,5 +1,5 @@
-public with sharing class IngressoSelector {
-
+public with sharing class FilmesSelector {
+   
     public static List<Filme__c> consultarFilmePorId(List<Id> filmesToUpdate) {
 
         List<Filme__c> resultados = new List<Filme__c>();
@@ -14,13 +14,5 @@ public with sharing class IngressoSelector {
 
         return resultados;
     }
-
-    public static List<Ingressos__c> consultarIngressosAntigos() {
-        List<Ingressos__c> ingressosAntigos = [SELECT Id, Name, CreatedDate
-                                                FROM Ingressos__c
-                                                WHERE CreatedDate < :Date.today().addDays(-7)];
-        return ingressosAntigos;
-    }
-    
 
 }

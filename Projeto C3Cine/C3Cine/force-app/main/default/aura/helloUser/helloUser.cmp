@@ -10,7 +10,7 @@
    <div class="greetings">
 
        <p class="slds-p-horizontal_small">
-                <h1>{!v.tempo} {!v.mensagem}</h1>
+                <h1 aura:id="aoba">{!v.tempo} {!v.mensagem}</h1>
     
             </p>
 

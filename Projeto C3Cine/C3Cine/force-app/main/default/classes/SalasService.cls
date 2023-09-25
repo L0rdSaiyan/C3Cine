@@ -15,7 +15,18 @@ public with sharing class SalasService {
 
     }
 
- 
+    public static void definirdisponibilidadeDaSalaTriggerHandler(List<Sala__c> salas){
+
+    for(Sala__c sala : salas){
+
+        if(sala.Quantidade_de_Assentos__c <= 0){
+
+        sala.Disponivel__c	= 'Não';
+
+        }
 
 
+    }
+
+    }
 }

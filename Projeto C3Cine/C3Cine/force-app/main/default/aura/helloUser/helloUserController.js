@@ -1,6 +1,9 @@
 ({
     doInit: function (component, event, helper) {
 
+      
+
+
         //Chama o método de saudação
         var action = component.get("c.greetings");
         action.setCallback(this, function (response) {

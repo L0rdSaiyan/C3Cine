@@ -11,6 +11,29 @@ public static void defineStatusTriggerHandler(List<Produtos__c> produtos){
         }
     }
 
+}   
+
+public static void reduzirProdutosDoEstoque(List<Compra__c> comprasprodutos){
+    List<Id> estoqueToUpdate = new List<Id>();
+
+    for(Compra__c compra : comprasprodutos){
+
+        estoqueToUpdate.add(compra.Produto__c);
+
+    }
+    
+    List<Produtos__c> produtos = [SELECT Id, Name, Quantidade_em_estoque__c
+                                FROM Produtos__c
+                                WHERE Id IN : estoqueToUpdate];
+
+    for(Produtos__c produto : produtos){
+
+        produto.Quantidade_em_estoque__c -=1;
+
+    }
+
+    update produtos;
+
 }
 
 
