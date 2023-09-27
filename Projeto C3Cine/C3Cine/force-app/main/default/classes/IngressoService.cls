@@ -70,40 +70,66 @@ public with sharing class IngressoService {
         update salas;
     }
 
-    // Método para validar o valor do ingresso com base no dia da semana e do cliente.
+    // Método para validar o valor do ingresso com base no dia da semana, do cliente e tipo da sala.
     public static void validarValorDoIngresso(List<Ingressos__c> ingressos) {
         List<Id> idClientes = new List<Id>();
+        List<Id> idSala = new List<Id>();
+
         DateTime dt = DateTime.newInstance(System.today(), Time.newInstance(0, 0, 0, 0));
         String dayOfWeek = dt.format('u');
+        Double valorTaxaSala3D = 10.00;
+        Double valorComecoDeSemana = 15.00;
+        Double valorPCD = 18.00;
+        Double valorEstudante = 15.00;
+        Double valorPadraoIngresso = 30.00;
 
         for (Ingressos__c ingresso : ingressos) {
             idClientes.add(ingresso.Cliente__c);
+            idSala.add(ingresso.Sala__c);
         }
 
+
+
+        List<Sala__c> salas = SalasSelector.selecionarAssentoSalas(idSala);
         List<Cliente__c> clientes = ClientesSelector.consultarClientes(idClientes);
 
         for (Cliente__c cliente : clientes) {
             // Se o dia da semana for terça, quarta ou quinta, o valor do ingresso é R$15.00
             if (dayOfWeek == '2' || dayOfWeek == '3' || dayOfWeek == '4') {
                 for (Ingressos__c ingresso : ingressos) {
-                    ingresso.Valor_do_Ingresso__c = 15.00;
+                    ingresso.Valor_do_Ingresso__c = valorComecoDeSemana;
                 }
-                return; // Retorna para evitar outras condições
+                return; // Retorna para evitar outras condiçõe
             }
 
             if (cliente.Pessoa_com_DeficiEncia_PCD__c == 'Sim') {
                 for (Ingressos__c ingresso : ingressos) {
-                    ingresso.Valor_do_Ingresso__c = 18.00;
+                    ingresso.Valor_do_Ingresso__c = valorPCD;
                 }
-            } else if (cliente.estudante__c == 'Sim' && cliente.estudante__c == 'Sim') {
+            } else if (cliente.estudante__c == 'Sim' && cliente.Apresentou_Carteirinha__c == 'Sim') {
                 for (Ingressos__c ingresso : ingressos) {
-                    ingresso.Valor_do_Ingresso__c = 15.00;
+                    ingresso.Valor_do_Ingresso__c = valorEstudante;
                 }
             } else {
                 for (Ingressos__c ingresso : ingressos) {
-                    ingresso.Valor_do_Ingresso__c = 30.00;
+                    ingresso.Valor_do_Ingresso__c = valorPadraoIngresso;
                 }
             }
+
+            for(Sala__c sala : salas){
+
+                if(sala.Tipo_de_Sala__c == '3D'){
+
+                    for(Ingressos__c ingresso : ingressos){
+
+                        ingresso.Valor_do_Ingresso__c = valorTaxaSala3D;
+
+                    }
+
+                }
+
+            }
+
         }
     }
 
@@ -180,6 +206,27 @@ public with sharing class IngressoService {
         
         
 }
+
+
+    public static void valdidarCampoAssento(List<Ingressos__c> ingressos){
+
+        for(Ingressos__c ingresso : ingressos){
+
+            if(ingresso.teste_assento__c == null || ingresso.teste_assento__c == '' || ingresso.teste_assento__c == 'null'){
+
+
+                ingresso.teste_assento__c.addError('Você não selecionou nenhum assento!');
+
+            }
+
+
+        }
+
+        
+
+
+    }
+
 
     // O método abaixo foi transferido para a classe CreateAssentoController.
     // public static void validarAssentoDisponivelParaSala(List<Ingressos__c> ingressos) {

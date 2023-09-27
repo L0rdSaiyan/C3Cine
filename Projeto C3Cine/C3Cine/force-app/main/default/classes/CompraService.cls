@@ -39,6 +39,9 @@ public with sharing class CompraService {
         for (Compra__c comp : compras) {
             for(Produtos__c prod : produtos){
                 comp.Valor_Total__c = comp.Quantidade__c * prod.Valor_do_Produto__c;
+                if(comp.Valor_Total__c >= 50){
+                    comp.Valor_Total__c = comp.Valor_Total__c * 0.85;
+                }
             }
         }
     } 
@@ -50,15 +53,18 @@ public with sharing class CompraService {
             listaProdutos.add(comp.Produto__c);
         }
     
-        Map<Id, Produtos__c> produtosMap = new Map<Id, Produtos__c>([SELECT Id, Quantidade_em_estoque__c
-                                                                       FROM Produtos__c
-                                                                       WHERE Id IN :listaProdutos]);
-    
-        for (Compra__c compra : compras) {
-            if (produtosMap.containsKey(compra.Produto__c)) {
-                Produtos__c produto = produtosMap.get(compra.Produto__c);
-                if (compra.Quantidade__c > produto.Quantidade_em_estoque__c) {
-                    compra.Quantidade__c.addError('A quantidade da compra não pode ser maior que a quantidade em estoque do produto.');
+        List<Produtos__c> produtos = [SELECT Id, Valor_do_Produto__c, Quantidade_em_estoque__c
+                                      FROM Produtos__c 
+                                      WHERE Id 
+                                      IN : listaProdutos];
+        
+
+        for(Compra__c comp : compras) {
+            for (Produtos__c prod : produtos) {
+                
+                if(comp.Quantidade__c > prod.Quantidade_em_estoque__c){
+                    comp.Quantidade__c.addError('Nosso estoque é limitado, você só pode escolher até '
+                     + prod.Quantidade_em_estoque__c + ' itens');
                 }
             }
         }

@@ -1,0 +1,32 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <lightning:carousel disableAutoRefresh="false" disableAutoScroll="false">
+        <lightning:carouselImage
+            src = "{!$Resource.pipoca}"
+            header = "Pipoca"
+            description = "A Pipoca mais procurada do Brasil"
+            alternativeText = "A Pipoca mais procurada do Brasil"
+            href = "">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "{!$Resource.refris}"
+            header = "Bebidas"
+            description = "Temos vários refris pra acompanhar sua pipoca!"
+            alternativeText = ""
+            href="">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "{!$Resource.fini}"
+            header = "Doces"
+            description = "E uma Fini pra completar seu dia!"
+            alternativeText = "E uma Fini para completar seu dia!"
+            href = "">
+        </lightning:carouselImage>
+        <lightning:carouselImage
+            src = "{!$Resource.churros}"
+            header = "Doces"
+            description = "Temos CHURROS!"
+            alternativeText = "E uma Fini para completar seu dia!"
+            href = "">
+        </lightning:carouselImage>
+    </lightning:carousel>
+</aura:component>

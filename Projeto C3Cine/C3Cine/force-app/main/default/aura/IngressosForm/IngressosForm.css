@@ -7,10 +7,14 @@
     margin: 0 auto;
 }
 
-.THIS .tela{
+.THIS #tela{
 
-    background-color: red;
 
+    width: 100px;
+    height: 20px;
+    text-align: center;
+    background-color: #000;
+    color: #770a0a;
 }
 
 
@@ -28,7 +32,7 @@
     line-height: 45px; /* Centraliza o texto horizontalmente */
     cursor: pointer; /* Cursor do mouse ao passar sobre as divs */
     background-size: cover;
-    background-color: red;
+    background-color: rgb(43, 39, 39);
     background-position: center;
 
 }
@@ -53,8 +57,8 @@
     line-height: 45px; /* Centraliza o texto horizontalmente */
     cursor: pointer; /* Cursor do mouse ao passar sobre as divs */
     background-image: url('/resource/seat');
-    background-size: cover;
     background-position: center;
+    background-size: 25px;
 }
 
 .THIS h1{

@@ -17,8 +17,8 @@
         <lightning:carouselImage
             src = "{!$Resource.C3CineFamilia}"
             header = "Para toda a família!"
-            description = "Traga toda a sua família para experimentar a mágina da C3Cine."
-            alternativeText = "Traga toda a sua família para experimentar a mágina da C3Cine."
+            description = "Traga toda a sua família para experimentar a magia da C3Cine."
+            alternativeText = "Traga toda a sua família para experimentar a magia da C3Cine."
             href = "">
         </lightning:carouselImage>
     </lightning:carousel>
