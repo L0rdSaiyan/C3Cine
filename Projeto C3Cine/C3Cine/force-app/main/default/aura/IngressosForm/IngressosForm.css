@@ -7,6 +7,24 @@
     margin: 0 auto;
 }
 
+.THIS .nomeFileiras{
+
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    background-color: red;
+}
+
+.THIS span{
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
 .THIS #tela{
 
 

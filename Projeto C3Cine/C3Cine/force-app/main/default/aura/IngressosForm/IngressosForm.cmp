@@ -7,14 +7,13 @@
         <aura:attribute name="listOppLineItem5" type="List" default="['e1','e2','e3','e4','e5','e6','e7','e8','e9','e10']" />
         <aura:attribute name="cadeirasOcupadas" type="List"></aura:attribute>
         <aura:attribute name="assentosCarregados" type="Boolean" default="false"></aura:attribute>
+        <aura:attribute name="salaSelecionada" type="String"/>
         <aura:attribute name="idCadeiras" type="String"></aura:attribute>
         <aura:attribute name="cadeiraSelecionada" type="String" access="GLOBAL" default="null" ></aura:attribute>
-        <aura:attribute name="nomeDaSala" type="String"></aura:attribute>
         <aura:attribute name="valorAssento" type="Decimal" default=""></aura:attribute>
         <lightning:notificationsLibrary aura:id="notifLib"/>
         <aura:attribute name="currentList" type="List" />
 
-        
         <lightning:card title="Criar Ingresso">
             <lightning:recordForm
                 aura:id="myRecordForm"
@@ -36,13 +35,16 @@
         <div class="main-container">
             <lightning:card>
                 <h1>Escolha seu assento</h1>
+
+             
+
                 <lightning:layout horizontalAlign="space">
 
 
                 <aura:if isTrue="{!v.assentosCarregados}">
                     <lightning:spinner alternativeText="Loading" size="medium" />
                 </aura:if>
-
+                <span>A</span>
             <aura:iteration items="{!v.listOppLineItem}" var="oppLineItem" indexVar="index">
                 <div class="fileira">
                     <lightning:layoutItem padding="around-small">
@@ -57,6 +59,8 @@
                 
 
             <lightning:layout horizontalAlign="space">
+                <span>B</span>
+
                 <aura:iteration items="{!v.listOppLineItem2}" var="oppLineItem" indexVar="index">
                 <div class="fileira">
                     <lightning:layoutItem padding="around-small">
@@ -71,6 +75,7 @@
 
 
             <lightning:layout horizontalAlign="space">
+                <span>C</span>
                 <aura:iteration items="{!v.listOppLineItem3}" var="oppLineItem" indexVar="index">
                     <div class="fileira">
                         <lightning:layoutItem padding="around-small">
@@ -84,6 +89,7 @@
                 
 
             <lightning:layout horizontalAlign="space">
+                <span>D</span>
                 <aura:iteration items="{!v.listOppLineItem4}" var="oppLineItem" indexVar="index">
                     <div class="fileira">
                         <lightning:layoutItem padding="around-small">
@@ -97,6 +103,7 @@
                 
 
             <lightning:layout horizontalAlign="space">
+                <span>E</span>
                 <aura:iteration items="{!v.listOppLineItem5}" var="oppLineItem" indexVar="index">
                 <div class="fileira">
                     <lightning:layoutItem padding="around-small">

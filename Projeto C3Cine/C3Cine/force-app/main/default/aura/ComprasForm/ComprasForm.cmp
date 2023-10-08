@@ -2,9 +2,9 @@
             <aura:attribute name="fields" type="String[]" default="['Name','Produto__c','Cliente__c','Quantidade__c','Valor_Total__c']" />
             <aura:attribute name="recordId" type="String"/>
             <lightning:notificationsLibrary aura:id="notifLib"/>
-
+            <lightning:card>
             <lightning:recordForm
-                    objectApiName="Compra__c"
-                    fields="{!v.fields}"
-                    onsuccess="{!c.handleSuccess}" />
+            objectApiName="Compra__c"
+            fields="{!v.fields}"/>
+        </lightning:card>
 </aura:component>

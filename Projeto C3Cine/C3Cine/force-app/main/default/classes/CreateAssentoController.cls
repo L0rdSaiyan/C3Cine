@@ -24,12 +24,11 @@ global with sharing class CreateAssentoController {
         return resposta;
     }
 
-
     @AuraEnabled
-    public static List<String> selecionarTodosAssentos() {
+    public static List<String> selecionarAssentosPorSala(String nomeSala) {
         List<String> nomesAssentos = new List<String>();
     
-        List<Assento__c> assentos = [SELECT Name FROM Assento__c];
+        List<Assento__c> assentos = [SELECT Name FROM Assento__c WHERE Sala__c = :nomeSala];
     
         for (Assento__c assento : assentos) {
             nomesAssentos.add(assento.Name);

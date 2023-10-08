@@ -1,41 +1,31 @@
 ({
     buscarERenderizarCadeirasOcupadas: function(component) {
-        component.set("v.assentosCarregados",true)
-        var action = component.get("c.selecionarTodosAssentos");
+        component.set("v.assentosCarregados", true);
+        var nomeSala = component.get("v.salaSelecionada");
+        var action = component.get("c.selecionarAssentosPorSala");
+        action.setParams({ nomeSala: nomeSala });
         action.setCallback(this, function (response) {
             if (response.getState() === "SUCCESS") {
                 var result = response.getReturnValue();
-    
-                result.forEach(function (nomeAssento) {
-    
-                    var elements = document.getElementsByClassName("custom-box");
-    
-                    for (var i = 0; i < elements.length; i++) {
-                        var element = elements[i];
-    
-    
-                        var dataId = element.getAttribute('data-id');
-    
-                        if (dataId == nomeAssento) {
-    
-                            var isOccupied = $A.util.hasClass(element, "assentoOcupado");
-    
-                            if (!isOccupied) {
-                                $A.util.addClass(element, "assentoOcupado");
-                                $A.util.removeClass(element, "custom-box")
-                            } else {
-    
-                                $A.util.removeClass(element, "assentoOcupado");
-                                $A.util.addClass(element, "custom-box");
-    
-                            }
-                            component.set("v.assentosCarregados", false)
+                var elements = document.getElementsByClassName("custom-box");
 
-    
-                        
+                for (var i = 0; i < elements.length; i++) {
+                    var element = elements[i];
+                    var dataId = element.getAttribute('data-id');
+
+                    if (result.includes(dataId)) {
+                        var isOccupied = $A.util.hasClass(element, "assentoOcupado");
+
+                        if (!isOccupied) {
+                            $A.util.addClass(element, "assentoOcupado");
+                            $A.util.removeClass(element, "custom-box");
+                        } else {
+                            $A.util.removeClass(element, "assentoOcupado");
+                            $A.util.addClass(element, "custom-box");
                         }
                     }
-                });
+                }
+                component.set("v.assentosCarregados", false);
             }
         });
         $A.enqueueAction(action);
@@ -78,8 +68,7 @@
             }
         });
         $A.enqueueAction(action);
-
-
+        component.set("v.salaSelecionada", "")
     
     },
 
@@ -118,6 +107,7 @@
         var valorDoAssento = fields.Valor_do_Ingresso__c;
         var nomeDaSala = fields.Sala__c;
         component.set("v.valorAssento", valorDoAssento);
+        component.set("v.salaSelecionada", nomeDaSala)
         fields.teste_assento__c = cadeiraSelecionada;
 
         var action = component.get("c.validarAssentoDisponivelParaSala");
@@ -156,8 +146,6 @@
     criarAssento : function(component,event){
 
         var recordId = event.getParam("id")
-    
-
 
         var cadeiraSelecionada = component.get("v.cadeiraSelecionada");
         var action = component.get("c.criarAssento");
@@ -166,7 +154,6 @@
             var result = response.getReturnValue();
     
             if (response.getState() === "SUCCESS") {
-               
               var toastEvent = $A.get("e.force:showToast");
                   // Dispare o evento do toast
                   toastEvent.setParams({
@@ -179,7 +166,6 @@
     
             }else{
     
-                   
               var toastEvent = $A.get("e.force:showToast");
               // Dispare o evento do toast
               toastEvent.setParams({
